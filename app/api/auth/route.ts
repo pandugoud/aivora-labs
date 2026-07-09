@@ -1,8 +1,13 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
+
+
+export async function GET() {
+  return NextResponse.json({
+    success: true,
+    message: "Auth API is working"
+  });
+}
 
 
 export async function POST(req: Request) {
@@ -33,7 +38,7 @@ export async function POST(req: Request) {
 
 
     // Temporary admin authentication
-    // Later Prisma database connect cheddam
+    // Later replace with Prisma database
 
     const adminEmail =
       process.env.ADMIN_EMAIL || "admin@aivoralabs.com";
@@ -50,11 +55,11 @@ export async function POST(req: Request) {
 
       return NextResponse.json(
         {
-          success:false,
-          message:"Invalid credentials"
+          success: false,
+          message: "Invalid credentials"
         },
         {
-          status:401
+          status: 401
         }
       );
 
@@ -67,209 +72,38 @@ export async function POST(req: Request) {
       },
       process.env.JWT_SECRET || "aivora-secret",
       {
-        expiresIn:"7d"
+        expiresIn: "7d"
       }
     );
 
 
-    return NextResponse.json({
-
-      success:true,
-
-      token
-
-    });
-
-
-  } catch(error) {
-
-
-    console.error(error);
-
-
     return NextResponse.json(
       {
-        success:false,
-        message:"Server error"
+        success: true,
+        message: "Login successful",
+        token
       },
       {
-        status:500
+        status: 200
       }
     );
 
 
-  }
-
-}
-=======
-import { NextResponse } from "next/server";
-
-export async function GET() {
-  return NextResponse.json({
-    success: true,
-    message: "Auth API is working"
-  });
-}
-
-
-export async function POST(req: Request) {
-
-  try {
-
-    const body = await req.json();
-
-    const {
-      email,
-      password
-    } = body;
-
-
-    if (!email || !password) {
-
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Email and password required"
-        },
-        {
-          status: 400
-        }
-      );
-
-    }
-
-
-    const adminEmail =
-      process.env.ADMIN_EMAIL || "admin@aivoralabs.com";
-
-
-    const adminPassword =
-      process.env.ADMIN_PASSWORD || "admin123";
-
-
-    if (
-      email !== adminEmail ||
-      password !== adminPassword
-    ) {
-
-      return NextResponse.json(
-        {
-          success:false,
-          message:"Invalid credentials"
-        },
-        {
-          status:401
-        }
-      );
-
-    }
-
-
-    return NextResponse.json({
-      success:true,
-      message:"Login successful"
-    });
-
-
   } catch(error) {
+
+    console.error("Auth Error:", error);
+
 
     return NextResponse.json(
       {
-        success:false,
-        message:"Server error"
+        success: false,
+        message: "Server error"
       },
       {
-        status:500
+        status: 500
       }
     );
 
   }
 
 }
->>>>>>> 037b154 (Fix auth api route export)
-=======
-import { NextResponse } from "next/server";
-
-export async function GET() {
-  return NextResponse.json({
-    success: true,
-    message: "Auth API is working"
-  });
-}
-
-
-export async function POST(req: Request) {
-
-  try {
-
-    const body = await req.json();
-
-    const {
-      email,
-      password
-    } = body;
-
-
-    if (!email || !password) {
-
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Email and password required"
-        },
-        {
-          status: 400
-        }
-      );
-
-    }
-
-
-    const adminEmail =
-      process.env.ADMIN_EMAIL || "admin@aivoralabs.com";
-
-
-    const adminPassword =
-      process.env.ADMIN_PASSWORD || "admin123";
-
-
-    if (
-      email !== adminEmail ||
-      password !== adminPassword
-    ) {
-
-      return NextResponse.json(
-        {
-          success:false,
-          message:"Invalid credentials"
-        },
-        {
-          status:401
-        }
-      );
-
-    }
-
-
-    return NextResponse.json({
-      success:true,
-      message:"Login successful"
-    });
-
-
-  } catch(error) {
-
-    return NextResponse.json(
-      {
-        success:false,
-        message:"Server error"
-      },
-      {
-        status:500
-      }
-    );
-
-  }
-
-}
->>>>>>> cf224dec2a2fb51e482a125ff677ba8005c099a6
