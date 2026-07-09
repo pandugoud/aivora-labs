@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@prisma/client": "^7.8.0",
+    "@prisma/client": "latest",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "bcrypt": "^6.0.0",
@@ -22,9 +22,8 @@
     "next": "^16.2.10",
     "next-themes": "^0.4.6",
     "nodemailer": "^9.0.3",
-    "@prisma/client": "latest",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "tailwind-merge": "^3.6.0",
     "three": "^0.185.1"
   },
@@ -36,8 +35,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
+    "prisma": "latest",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "prisma": "latest"
+    "typescript": "^5"
   }
 }
